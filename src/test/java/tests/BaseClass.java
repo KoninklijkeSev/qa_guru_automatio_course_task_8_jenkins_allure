@@ -15,6 +15,7 @@ public class BaseClass {
     static void setup() {
         // Listener make screenshots and save page source
         addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
+        Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.startMaximized = true;
 
         // config for Java + Selenide
@@ -45,7 +46,7 @@ public class BaseClass {
         attachScreenshot("Last screenshot");
         attachPageSource();
         attachAsText("Browser console logs", getConsoleLogs());
-        if (System.getProperty("video_storage") != null)
+        if(System.getProperty("video_storage") != null)
             attachVideo();
         closeWebDriver();
     }
