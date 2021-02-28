@@ -34,6 +34,7 @@ public class BaseClass {
         attachAsText("Browser console logs", getConsoleLogs());
         if(System.getProperty("video_storage") != null)
             attachVideo();
+        System.out.println();
         closeWebDriver();
     }
 }
