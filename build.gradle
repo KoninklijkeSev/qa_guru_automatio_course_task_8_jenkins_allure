@@ -40,3 +40,9 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+task functional_test(type: Test) {
+    useJUnitPlatform {
+        includeTags 'functional'
+    }
+}

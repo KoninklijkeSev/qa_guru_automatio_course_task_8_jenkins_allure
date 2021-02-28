@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import com.github.javafaker.Faker;
 
@@ -26,6 +27,7 @@ public class TestsStudentRegistrationForm extends BaseClass {
             hobbiesSports = "Sports";
 
     @Test
+    @Tag("functional")
     void studentRegistrationForm() {
         step("Open registration form", () -> {
             open("https://demoqa.com/automation-practice-form");
@@ -76,6 +78,7 @@ public class TestsStudentRegistrationForm extends BaseClass {
     }
 
     @Test
+    @Tag("functional")
     void negativeStudentRegistrationForm() {
         step("Open registration form", () -> {
             open("https://demoqa.com/automation-practice-form");
