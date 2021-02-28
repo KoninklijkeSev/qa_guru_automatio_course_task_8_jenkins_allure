@@ -13,32 +13,18 @@ import static helpers.AttachmentsHelper.*;
 public class BaseClass {
     @BeforeAll
     static void setup() {
-        // Listener make screenshots and save page source
         addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
         Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.startMaximized = true;
 
-        // config for Java + Selenide
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        // can see how working autotest in browser on selenoid
-        capabilities.setCapability("enableVNC", true);
-        // told start rec. video in browser on selenoid
-        capabilities.setCapability("enableVideo", true);
-        Configuration.browserCapabilities = capabilities;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud:4444/wd/hub/";
-
-        // config for Java + Selenium
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("browserName", "chrome");
-//        capabilities.setCapability("browserVersion", "87.0");
-//        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-//                "enableVNC", true,
-//                "enableVideo", true
-//        ));
-//        RemoteWebDriver driver = new RemoteWebDriver(
-//                URI.create("http://selenoid:4444/wd/hub").toURL(),
-//                capabilities
-//        );
+        if(System.getProperty("remote_driver") != null) {
+            // config for Java + Selenide
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("enableVNC", true);
+            capabilities.setCapability("enableVideo", true);
+            Configuration.browserCapabilities = capabilities;
+            Configuration.remote = System.getProperty("remote_driver");
+        }
     }
 
     @AfterEach
@@ -46,6 +32,8 @@ public class BaseClass {
         attachScreenshot("Last screenshot");
         attachPageSource();
         attachAsText("Browser console logs", getConsoleLogs());
-        attachVideo();
+        if(System.getProperty("video_storage") != null)
+            attachVideo();
+        closeWebDriver();
     }
 }
