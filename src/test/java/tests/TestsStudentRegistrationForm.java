@@ -91,3 +91,5 @@ public class TestsStudentRegistrationForm extends BaseClass {
             $("#closeLargeModal").click();
         });
     }
+
+}
