@@ -33,5 +33,6 @@ public class BaseClass {
         attachPageSource();
         attachAsText("Browser console logs", getConsoleLogs());
         attachVideo();
+        closeWebDriver();
     }
 }
