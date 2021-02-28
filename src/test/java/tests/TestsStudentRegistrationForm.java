@@ -74,4 +74,20 @@ public class TestsStudentRegistrationForm extends BaseClass {
             $("#closeLargeModal").click();
         });
     }
-}
+
+    @Test
+    void negativeStudentRegistrationForm() {
+        step("Open registration form", () -> {
+            open("https://demoqa.com/automation-practice-form");
+            $(byText("Practice Form")).shouldHave(text("Practice Form"));
+        });
+
+        step("Fill registration form", () -> {
+
+            $("#submit").click();
+        });
+
+        step("Check form to successful fill", () -> {
+            $("#closeLargeModal").click();
+        });
+    }
