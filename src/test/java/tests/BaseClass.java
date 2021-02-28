@@ -18,10 +18,12 @@ public class BaseClass {
         Configuration.startMaximized = true;
 
         // config for Java + Selenide
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("enableVNC", true);
-//        capabilities.setCapability("enableVideo", true);
-//        Configuration.browserCapabilities = capabilities;
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        // can see how working autotest in browser on selenoid
+        capabilities.setCapability("enableVNC", true);
+        // told start rec. video in browser on selenoid
+        capabilities.setCapability("enableVideo", true);
+        Configuration.browserCapabilities = capabilities;
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud:4444/wd/hub/";
 
         // config for Java + Selenium
